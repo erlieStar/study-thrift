@@ -1,4 +1,4 @@
-package com.st.main;
+package com.st.main.test1;
 
 
 import com.st.service.HelloServiceImpl;
@@ -11,8 +11,14 @@ import org.apache.thrift.server.TSimpleServer;
 import org.apache.thrift.transport.TServerSocket;
 import org.apache.thrift.transport.TTransportException;
 
+/*
+ * 简单的单线程服务模型，一般用于测试
+ */
+
 @Slf4j
 public class TestServer1 {
+
+    public static final int SERVER_PORT = 8090;
 
     public static void main(String[] args) {
 
