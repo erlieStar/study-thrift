@@ -1,7 +1,6 @@
 package com.st.main.test3;
 
 import com.st.thrift.Hello;
-import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TCompactProtocol;
 import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.transport.TFramedTransport;

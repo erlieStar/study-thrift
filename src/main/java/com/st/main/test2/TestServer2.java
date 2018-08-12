@@ -1,13 +1,12 @@
 package com.st.main.test2;
 
 
-import com.st.service.HelloServiceImpl;
-import com.st.thrift.Hello;
+import com.st.service.SumServiceImp;
+import com.st.thrift.SumService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.thrift.TProcessor;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.server.TServer;
-import org.apache.thrift.server.TSimpleServer;
 import org.apache.thrift.server.TThreadPoolServer;
 import org.apache.thrift.transport.TServerSocket;
 import org.apache.thrift.transport.TTransportException;
@@ -24,11 +23,11 @@ public class TestServer2 {
     public static void main(String[] args) {
 
         try {
-            log.info("服务端开启");
-            TProcessor tprocessor = new Hello.Processor<Hello.Iface>(new HelloServiceImpl());
+            System.out.println("服务端开启");
+            TProcessor tProcessor = new SumService.Processor<SumService.Iface>(new SumServiceImp());
             TServerSocket serverTransport = new TServerSocket(SERVER_PORT);
             TThreadPoolServer.Args ttpsArgs = new TThreadPoolServer.Args(serverTransport);
-            ttpsArgs.processor(tprocessor);
+            ttpsArgs.processor(tProcessor);
             ttpsArgs.protocolFactory(new TBinaryProtocol.Factory());
             TServer server = new TThreadPoolServer(ttpsArgs);
             server.serve();

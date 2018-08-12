@@ -1,8 +1,8 @@
 package com.st.main.test1;
 
 
-import com.st.service.HelloServiceImpl;
-import com.st.thrift.Hello;
+import com.st.service.SumServiceImp;
+import com.st.thrift.SumService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.thrift.TProcessor;
 import org.apache.thrift.protocol.TBinaryProtocol;
@@ -18,17 +18,17 @@ import org.apache.thrift.transport.TTransportException;
 @Slf4j
 public class TestServer1 {
 
-    public static final int SERVER_PORT = 8090;
+    public static final int PORT = 8090;
 
     public static void main(String[] args) {
 
         try {
-            log.info("服务端开启");
-            TProcessor tprocessor = new Hello.Processor<Hello.Iface>(new HelloServiceImpl());
+            System.out.println("服务端开启");
+            TProcessor tProcessor = new SumService.Processor<SumService.Iface>(new SumServiceImp());
             // 简单的单线程服务模型
-            TServerSocket serverTransport = new TServerSocket(9898);
+            TServerSocket serverTransport = new TServerSocket(PORT);
             TServer.Args tArgs = new TServer.Args(serverTransport);
-            tArgs.processor(tprocessor);
+            tArgs.processor(tProcessor);
             tArgs.protocolFactory(new TBinaryProtocol.Factory());
             TServer server = new TSimpleServer(tArgs);
             server.serve();

@@ -1,6 +1,6 @@
 package com.st.main.test1;
 
-import com.st.thrift.Hello;
+import com.st.thrift.SumService;
 import org.apache.thrift.protocol.TBinaryProtocol;
 import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.transport.TSocket;
@@ -20,10 +20,11 @@ public class TestClient1 {
             transport = new TSocket(SERVER_IP, SERVER_PORT, TIMEOUT);
             // 协议要和服务端一致
             TProtocol protocol = new TBinaryProtocol(transport);
-            Hello.Iface client = new Hello.Client(protocol);
+            SumService.Iface client = new SumService.Client(protocol);
             transport.open();
-            String result = client.helloString("hello word");
-            System.out.println(result);
+            // 在这里，就像调用本地代码一样，其实实现逻辑在服务器
+            int sum = client.getSum(10, 20);
+            System.out.println(sum);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
