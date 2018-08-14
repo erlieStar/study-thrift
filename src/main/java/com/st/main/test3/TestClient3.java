@@ -1,6 +1,6 @@
 package com.st.main.test3;
 
-import com.st.thrift.Hello;
+import com.st.thrift.SumService;
 import org.apache.thrift.protocol.TCompactProtocol;
 import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.transport.TFramedTransport;
@@ -21,10 +21,10 @@ public class TestClient3 {
             transport = new TFramedTransport(new TSocket(SERVER_IP, SERVER_PORT, TIMEOUT));
             // 协议要和服务端一致
             TProtocol protocol = new TCompactProtocol(transport);
-            Hello.Iface client = new Hello.Client(protocol);
+            SumService.Iface client = new SumService.Client(protocol);
             transport.open();
-            String result = client.helloString("hello word");
-            System.out.println(result);
+            int sum = client.getSum(10 ,20);
+            System.out.println(sum);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

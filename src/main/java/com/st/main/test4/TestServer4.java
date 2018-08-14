@@ -1,8 +1,8 @@
 package com.st.main.test4;
 
 
-import com.st.service.HelloServiceImpl;
-import com.st.thrift.Hello;
+import com.st.service.SumServiceImp;
+import com.st.thrift.SumService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.thrift.TProcessor;
 import org.apache.thrift.protocol.TCompactProtocol;
@@ -25,10 +25,10 @@ public class TestServer4 {
 
         try {
             log.info("服务端开启");
-            TProcessor tprocessor = new Hello.Processor<Hello.Iface>(new HelloServiceImpl());
+            TProcessor tProcessor = new SumService.Processor<SumService.Iface>(new SumServiceImp());
             TNonblockingServerSocket tnbServerTransport = new TNonblockingServerSocket(SERVER_PORT);
             TNonblockingServer.Args tnbArgs = new TNonblockingServer.Args(tnbServerTransport);
-            tnbArgs.processor(tprocessor);
+            tnbArgs.processor(tProcessor);
             tnbArgs.transportFactory(new TFramedTransport.Factory());
             tnbArgs.protocolFactory(new TCompactProtocol.Factory());
             TServer server = new TNonblockingServer(tnbArgs);
