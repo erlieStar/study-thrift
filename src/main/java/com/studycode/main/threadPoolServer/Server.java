@@ -1,8 +1,8 @@
-package com.st.main.test2;
+package com.studycode.main.threadPoolServer;
 
 
-import com.st.service.SumServiceImp;
-import com.st.thrift.SumService;
+import com.studycode.service.SumServiceImp;
+import com.studycode.thrift.SumService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.thrift.TProcessor;
 import org.apache.thrift.protocol.TBinaryProtocol;
@@ -16,7 +16,7 @@ import org.apache.thrift.transport.TTransportException;
  */
 
 @Slf4j
-public class TestServer2 {
+public class Server {
 
     public static final int SERVER_PORT = 8090;
 

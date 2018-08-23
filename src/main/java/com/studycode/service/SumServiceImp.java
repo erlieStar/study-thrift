@@ -1,6 +1,6 @@
-package com.st.service;
+package com.studycode.service;
 
-import com.st.thrift.SumService;
+import com.studycode.thrift.SumService;
 import org.apache.thrift.TException;
 
 public class SumServiceImp implements SumService.Iface {

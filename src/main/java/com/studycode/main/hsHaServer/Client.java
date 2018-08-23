@@ -1,13 +1,13 @@
-package com.st.main.test3;
+package com.studycode.main.hsHaServer;
 
-import com.st.thrift.SumService;
+import com.studycode.thrift.SumService;
 import org.apache.thrift.protocol.TCompactProtocol;
 import org.apache.thrift.protocol.TProtocol;
 import org.apache.thrift.transport.TFramedTransport;
 import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
 
-public class TestClient3 {
+public class Client {
 
     public static final String SERVER_IP = "127.0.0.1";
     public static final int SERVER_PORT = 8090;

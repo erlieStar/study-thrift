@@ -65,7 +65,7 @@
                         <manifest>
                             <!-- <addClasspath>true</addClasspath> -->
                             <!-- <classpathPrefix>lib/</classpathPrefix> -->
-                            <mainClass>com.st.cis.main.UserAnalysisServerV2</mainClass>
+                            <mainClass>com.studycode.cis.main.UserAnalysisServerV2</mainClass>
                         </manifest>
                     </archive>
                 </configuration>
