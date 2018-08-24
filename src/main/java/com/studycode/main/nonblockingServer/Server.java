@@ -1,7 +1,7 @@
 package com.studycode.main.nonblockingServer;
 
 
-import com.studycode.service.SumServiceImp;
+import com.studycode.service.SumServiceImpl;
 import com.studycode.thrift.SumService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.thrift.TProcessor;
@@ -25,7 +25,7 @@ public class Server {
 
         try {
             log.info("服务端开启");
-            TProcessor tProcessor = new SumService.Processor<SumService.Iface>(new SumServiceImp());
+            TProcessor tProcessor = new SumService.Processor<SumService.Iface>(new SumServiceImpl());
             TNonblockingServerSocket tnbServerTransport = new TNonblockingServerSocket(SERVER_PORT);
             TNonblockingServer.Args tnbArgs = new TNonblockingServer.Args(tnbServerTransport);
             tnbArgs.processor(tProcessor);

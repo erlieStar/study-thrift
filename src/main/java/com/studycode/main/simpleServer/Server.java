@@ -1,7 +1,7 @@
 package com.studycode.main.simpleServer;
 
 
-import com.studycode.service.SumServiceImp;
+import com.studycode.service.SumServiceImpl;
 import com.studycode.thrift.SumService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.thrift.TProcessor;
@@ -24,7 +24,7 @@ public class Server {
 
         try {
             System.out.println("服务端开启");
-            TProcessor tProcessor = new SumService.Processor<SumService.Iface>(new SumServiceImp());
+            TProcessor tProcessor = new SumService.Processor<SumService.Iface>(new SumServiceImpl());
             // 简单的单线程服务模型
             TServerSocket serverTransport = new TServerSocket(PORT);
             TServer.Args tArgs = new TServer.Args(serverTransport);

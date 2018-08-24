@@ -1,7 +1,7 @@
 package com.studycode.main.threadPoolServer;
 
 
-import com.studycode.service.SumServiceImp;
+import com.studycode.service.SumServiceImpl;
 import com.studycode.thrift.SumService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.thrift.TProcessor;
@@ -24,7 +24,7 @@ public class Server {
 
         try {
             System.out.println("服务端开启");
-            TProcessor tProcessor = new SumService.Processor<SumService.Iface>(new SumServiceImp());
+            TProcessor tProcessor = new SumService.Processor<SumService.Iface>(new SumServiceImpl());
             TServerSocket serverTransport = new TServerSocket(SERVER_PORT);
             TThreadPoolServer.Args ttpsArgs = new TThreadPoolServer.Args(serverTransport);
             ttpsArgs.processor(tProcessor);
