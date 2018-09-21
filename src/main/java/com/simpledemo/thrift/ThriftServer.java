@@ -23,6 +23,8 @@ public class ThriftServer {
     private int port;
     private boolean isSync;
     private int maxWorkThreads = 20;
+    // 设置消息的最大大小为100M，防止消息太大造成OOM
+    public final long maxReadBufferBytes = 1024 * 1024 * 100L;
 
     public ThriftServer(String host, int port) {
         this.host = host;
@@ -51,6 +53,7 @@ public class ThriftServer {
 
                 serverArgs.transportFactory(new TFramedTransport.Factory());
                 serverArgs.protocolFactory(pf);
+                // 这里假如接口有多个实现类时，可以指定最终的实现类，如可以更改SumServiceImpl为其他的类
                 serverArgs.processorFactory(new TProcessorFactory(new SumService.Processor<SumService.Iface>(new SumServiceImpl())));
                 serverArgs.maxWorkerThreads(maxWorkThreads);
 
@@ -65,6 +68,7 @@ public class ThriftServer {
                 tsServerArgs.protocolFactory(pf);
                 tsServerArgs.processorFactory(new TProcessorFactory(new SumService.Processor<SumService.Iface>(new SumServiceImpl())));
                 tsServerArgs.workerThreads(maxWorkThreads);
+                tsServerArgs.maxReadBufferBytes = maxReadBufferBytes;
 
                 server = new TNonblockingServer(tsServerArgs);
                 serverInfo = "asyncServer";

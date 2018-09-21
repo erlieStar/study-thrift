@@ -1,4 +1,4 @@
-package com.simpledemo.helper;
+package com.simpledemo.util;
 
 import com.studycode.thrift.SumService;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +11,7 @@ import org.apache.thrift.transport.TSocket;
 import org.apache.thrift.transport.TTransport;
 
 @Slf4j
-public class ThriftHelper {
+public class ThriftUtil {
 
     /*
      * 这个类是用来快速搭建访问其他thrift服务的，main方法里面是一个简单的例子
@@ -60,8 +60,8 @@ public class ThriftHelper {
 
 
     public static void main(String[] args) throws TException {
-        TTransport transport = ThriftHelper.getTransport("127.0.0.1", 100 ,ThriftHelper.BINARY);
-        TProtocol protocol = ThriftHelper.getProtocol(transport, ThriftHelper.BINARY);
+        TTransport transport = ThriftUtil.getTransport("127.0.0.1", 100 , ThriftUtil.BINARY);
+        TProtocol protocol = ThriftUtil.getProtocol(transport, ThriftUtil.BINARY);
         SumService.Iface client = new SumService.Client(protocol);
         Integer sum = client.getSum(10 ,20);
         System.out.println(sum);
